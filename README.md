@@ -57,7 +57,7 @@ JObject gameData contains a JSON Object that is structured similar to this:
     "bomb": "planted"
   },
   "player": {
-    "steamid": "76561197994256276",
+    "steamid": "123456789",
     "clan": "RWBY",
     "name": "master117 - Yang",
     "team": "T",
