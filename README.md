@@ -15,11 +15,12 @@ subscribe to its messageReceived event and start.
 
 ```
 #!c#
-        CSGOGameObserverServer csgoGameObserverServer = new CSGOGameObserverServer("http://127.0.0.1:3000/");
-
-        csgoGameObserverServer.receivedCSGOServerMessage += OnReceivedCsgoServerMessage;
-
-        csgoGameObserverServer.Start();
+        public void RunServer()
+        {
+            CSGOGameObserverServer csgoGameObserverServer = new CSGOGameObserverServer("http://127.0.0.1:3000/");
+            csgoGameObserverServer.receivedCSGOServerMessage += OnReceivedCsgoServerMessage;
+            csgoGameObserverServer.Start();
+        }
 
         private void OnReceivedCsgoServerMessage(object sender, JObject gameData)
         {
