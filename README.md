@@ -28,6 +28,10 @@ subscribe to its messageReceived event and start.
 
 JObject gameData contains a JSON Object that is structured similar to this:
 
+
+```
+#!JSON
+
 {{
   "provider": {
     "name": "Counter-Strike: Global Offensive",
@@ -98,6 +102,8 @@ JObject gameData contains a JSON Object that is structured similar to this:
     "token": "abc123"
   }
 }}
+
+```
 
 ## How can I Contribution? ##
 
