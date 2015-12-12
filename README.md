@@ -9,7 +9,9 @@
 
 ## Use Instructions ##
 
-Just create a CSGOGameObserver Object, subcribe to its messageReceived event and start.
+Just create a CSGOGameObserver Object (with the CSGOClient Server adress), 
+
+subcribe to its messageReceived event and start.
 
 
 ```
