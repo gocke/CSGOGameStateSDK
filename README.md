@@ -7,6 +7,20 @@
 
 * Place dll in your project and add it as Reference
 
+## Use Instructions ##
+
+Just create a CSGOGameObserver Object, subcribe to its messageReceived event and start.
+
+
+```
+#!c#
+            CSGOGameObserverServer csgoGameObserverServer = new CSGOGameObserverServer("http://127.0.0.1:3000/");
+            csgoGameObserverServer.receivedCSGOServerMessage += OnReceivedCsgoServerMessage;
+            csgoGameObserverServer.Start();
+
+```
+
+
 ## How can I Contribution? ##
 
 * Write any test you like, Visual Studio tests are preferred
