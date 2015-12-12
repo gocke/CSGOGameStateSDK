@@ -10,13 +10,15 @@
 ## Use Instructions ##
 
 Just create a CSGOGameObserver Object (with the CSGOClient Server adress), 
-subcribe to its messageReceived event and start.
 
+subscribe to its messageReceived event and start.
 
 ```
 #!c#
             CSGOGameObserverServer csgoGameObserverServer = new CSGOGameObserverServer("http://127.0.0.1:3000/");
+
             csgoGameObserverServer.receivedCSGOServerMessage += OnReceivedCsgoServerMessage;
+
             csgoGameObserverServer.Start();
 
 ```
