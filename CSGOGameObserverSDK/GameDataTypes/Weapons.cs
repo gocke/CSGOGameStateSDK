@@ -1,4 +1,12 @@
-﻿using System;
+﻿////////////////////
+// 
+// This Code Listens to the CSGO GameState API and provides feedback
+// 
+// Author: Johannes Gocke, johannes_gocke@hotmail.de
+// 
+///////////////////
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
