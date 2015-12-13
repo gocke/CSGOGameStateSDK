@@ -9,9 +9,10 @@
 
 ## Use Instructions ##
 
-Just create a CSGOGameObserver Object (with the CSGOClient Server adress), 
-
-subscribe to its messageReceived event and start.
+* Create a CSGOGameObserver Object (with the CSGOClient Server adress), 
+* Subscribe to its messageReceived event
+* Start CSGOGameObserver
+* You can transform the GamData into a CSGOGameState Model.
 
 ```
 #!c#
@@ -24,7 +25,11 @@ subscribe to its messageReceived event and start.
 
         private void OnReceivedCsgoServerMessage(object sender, JObject gameData)
         {
+            CSGOGameState csgoGameState = new CSGOGameState(gameData);
 
+            if (csgoGameState.Round.Bomb != null && csgoGameState.Provider.Timestamp != null)
+            {
+                long currentTime = (long) csgoGameState.Provider.Timestamp;
 ```
 
 JObject gameData contains a JSON Object that is structured similar to this:
