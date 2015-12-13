@@ -26,17 +26,17 @@ namespace CSGOGameObserverSDK
 
     public class CSGOGameObserverServer
     {
-        private string GameServerAdress;
-        private HttpListener CSGOGameListener;
+        private string GameServerAdressString;
+        private HttpListener CSGOGameHttpListener;
 
         //Delegate to enable Subscription to the event of MessageReceived
         public delegate void receiveCSGOServerMessage(object sender, JObject gameData);
         public event receiveCSGOServerMessage receivedCSGOServerMessage;
         
         //Constructor, this version only accepts the direct adress, no auth, no parameter
-        public CSGOGameObserverServer(string tempGameServerAdress)
+        public CSGOGameObserverServer(string tempGameServerAdressString)
         {
-            GameServerAdress = tempGameServerAdress;
+            GameServerAdressString = tempGameServerAdressString;
         }
 
         //Starts the Server, starts Listening
@@ -49,18 +49,18 @@ namespace CSGOGameObserverSDK
         private void ConfigureServer()
         {
             //Create Local Server, Listening to CSGO Client
-            CSGOGameListener = new HttpListener();
-            CSGOGameListener.Prefixes.Add(GameServerAdress);
+            CSGOGameHttpListener = new HttpListener();
+            CSGOGameHttpListener.Prefixes.Add(GameServerAdressString);
         }
 
         private async void RunServer()
         {
-            CSGOGameListener.Start();
+            CSGOGameHttpListener.Start();
 
             //Catches all requests by the CSGOClient, startes a new Task for each Message, async
             while (true)
             {
-                var httpListenerContext = await CSGOGameListener.GetContextAsync();
+                var httpListenerContext = await CSGOGameHttpListener.GetContextAsync();
 
                 //messages may arrive early/late
                 #pragma warning disable 4014
@@ -69,29 +69,29 @@ namespace CSGOGameObserverSDK
             }
         }
 
-        private void ProcessRequest(HttpListenerContext httpListenerContext)
+        private void ProcessRequest(HttpListenerContext tempHttpListenerContext)
         {
             //Receive request and transform in JSON
-            HttpListenerRequest httpListenerRequest = httpListenerContext.Request;
+            HttpListenerRequest httpListenerRequest = tempHttpListenerContext.Request;
 
             try
             {
-                JObject gameData = (JObject)DeserializeFromStream(httpListenerRequest.InputStream);
+                JObject gameDataJObject = (JObject)DeserializeFromStream(httpListenerRequest.InputStream);
 
                 //respond to the CSGOClient in a timely fashion.
-                httpListenerContext.Response.StatusCode = 200;
-                httpListenerContext.Response.StatusDescription = "OK";
-                httpListenerContext.Response.Close();
+                tempHttpListenerContext.Response.StatusCode = 200;
+                tempHttpListenerContext.Response.StatusDescription = "OK";
+                tempHttpListenerContext.Response.Close();
 
                 //call the MessageReceived Event
-                receivedCSGOServerMessage?.Invoke(this, gameData);
+                receivedCSGOServerMessage?.Invoke(this, gameDataJObject);
             }
             catch (Exception)
             {
                 //respond to the CSGOClient with an error.
-                httpListenerContext.Response.StatusCode = 400;
-                httpListenerContext.Response.StatusDescription = "ERROR";
-                httpListenerContext.Response.Close();
+                tempHttpListenerContext.Response.StatusCode = 400;
+                tempHttpListenerContext.Response.StatusDescription = "ERROR";
+                tempHttpListenerContext.Response.Close();
             }        
         }
 

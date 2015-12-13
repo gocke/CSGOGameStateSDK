@@ -51,6 +51,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CSGOGameObserverServer.cs" />
+    <Compile Include="GameDataTypes\CSGOGameState.cs" />
+    <Compile Include="GameDataTypes\Map.cs" />
+    <Compile Include="GameDataTypes\MatchStats.cs" />
+    <Compile Include="GameDataTypes\Player.cs" />
+    <Compile Include="GameDataTypes\Provider.cs" />
+    <Compile Include="GameDataTypes\Round.cs" />
+    <Compile Include="GameDataTypes\State.cs" />
+    <Compile Include="GameDataTypes\TeamCT.cs" />
+    <Compile Include="GameDataTypes\TeamT.cs" />
+    <Compile Include="GameDataTypes\Weapon.cs" />
+    <Compile Include="GameDataTypes\Weapons.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
