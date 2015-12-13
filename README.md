@@ -1,4 +1,4 @@
-### About ###
+## About ##
 
 * This is a Library (sorry, SDK was aimed a bit too high i guess? :D), for developing .Net compatible Apps/Tools for CSGO
 * Version 1.0
