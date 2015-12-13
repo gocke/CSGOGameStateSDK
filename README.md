@@ -6,6 +6,8 @@
 ## Install/Run Instructions ##
 
 * Place dll in your project and add it as Reference
+* Place gamestate_integration_master117.cfg at steamapps\common\Counter-Strike Global Offensive\csgo\cfg\ (Restart CSGO)
+* Alternatively, create your own config according to: https://developer.valvesoftware.com/wiki/Counter-Strike:_Global_Offensive_Game_State_Integration
 
 ## Use Instructions ##
 
