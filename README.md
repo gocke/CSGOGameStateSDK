@@ -12,7 +12,7 @@
 * Create a CSGOGameObserver Object (with the CSGOClient Server adress), 
 * Subscribe to its messageReceived event
 * Start CSGOGameObserver
-* You can transform the GamData into a CSGOGameState Model.
+* You can transform the GamData into a CSGOGameState Model, for easier value access (beware, certain values might be null)
 
 ```
 #!c#
