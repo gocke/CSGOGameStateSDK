@@ -6,12 +6,15 @@
 ## Install/Run Instructions ##
 
 * Place dll in your project and add it as Reference
+* Place gamestate_integration_master117.cfg at steamapps\common\Counter-Strike Global Offensive\csgo\cfg\ (Restart CSGO)
+* Alternatively, create your own config according to: https://developer.valvesoftware.com/wiki/Counter-Strike:_Global_Offensive_Game_State_Integration
 
 ## Use Instructions ##
 
-Just create a CSGOGameObserver Object (with the CSGOClient Server adress), 
-
-subscribe to its messageReceived event and start.
+* Create a CSGOGameObserver Object (with the CSGOClient Server adress), 
+* Subscribe to its messageReceived event
+* Start CSGOGameObserver
+* You can transform the GamData into a CSGOGameState Model, for easier value access (beware, certain values might be null)
 
 ```
 #!c#
@@ -24,7 +27,11 @@ subscribe to its messageReceived event and start.
 
         private void OnReceivedCsgoServerMessage(object sender, JObject gameData)
         {
+            CSGOGameState csgoGameState = new CSGOGameState(gameData);
 
+            if (csgoGameState.Round.Bomb != null && csgoGameState.Provider.Timestamp != null)
+            {
+                long currentTime = (long) csgoGameState.Provider.Timestamp;
 ```
 
 JObject gameData contains a JSON Object that is structured similar to this:
