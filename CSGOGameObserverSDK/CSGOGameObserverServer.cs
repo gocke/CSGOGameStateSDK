@@ -8,9 +8,11 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -50,6 +52,8 @@ namespace CSGOGameObserverSDK
 
         private void ConfigureServer()
         {
+            Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            
             //Create Local Server, Listening to CSGO Client
             CSGOGameHttpListener = new HttpListener();
             CSGOGameHttpListener.Prefixes.Add(GameServerAdressString);
