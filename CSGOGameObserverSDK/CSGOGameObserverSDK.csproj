@@ -54,6 +54,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CSGOGameObserverServer.cs" />
+    <Compile Include="GameDataTypes\AllPlayer.cs" />
+    <Compile Include="GameDataTypes\AllPlayers.cs" />
     <Compile Include="GameDataTypes\CSGOGameState.cs" />
     <Compile Include="GameDataTypes\Map.cs" />
     <Compile Include="GameDataTypes\MatchStats.cs" />

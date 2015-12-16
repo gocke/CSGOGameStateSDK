@@ -17,11 +17,11 @@ namespace CSGOGameObserverSDK.GameDataTypes
 {
     public class Weapons
     {
-        public List<Weapon> WeaponList = new List<Weapon>();  
+        public List<Weapon> WeaponList { get; set; } = new List<Weapon>();  
 
         public Weapons(JToken weaponsDataJToken)
         {
-            //To get all weapons we iterate over the balues until we find a null value
+            //To get all weapons we iterate over the values
             foreach (var weaponDataJToken in weaponsDataJToken.Values())
             {
                 WeaponList.Add(new Weapon(weaponDataJToken));

@@ -13,6 +13,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -40,6 +41,10 @@ namespace CSGOGameObserverSDK
         //Constructor, this version only accepts the direct adress, no auth, no parameter
         public CSGOGameObserverServer(string tempGameServerAdressString)
         {
+            //Check if we are Admin, only required when we aren't using localhost
+            if (!tempGameServerAdressString.Contains("localhost") && !IsAdministrator())
+                throw new UnauthorizedAccessException("Can't access other hosts than localhost as non-admin, use localhost or restart as Admin");
+
             GameServerAdressString = tempGameServerAdressString;
         }
 
@@ -110,6 +115,14 @@ namespace CSGOGameObserverSDK
             {
                 return serializer.Deserialize(jsonTextReader);
             }
+        }
+
+        //Check if we are Admin, only required when we aren't using localhost
+        public static bool IsAdministrator()
+        {
+            WindowsIdentity identity = WindowsIdentity.GetCurrent();
+            WindowsPrincipal principal = new WindowsPrincipal(identity);
+            return principal.IsInRole(WindowsBuiltInRole.Administrator);
         }
     }
 

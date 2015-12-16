@@ -24,6 +24,7 @@ namespace CSGOGameObserverSDK.GameDataTypes
         public Round Round { get; set; }
         public Player Player { get; set; }
         public MatchStats MatchStats { get; set; }
+        public AllPlayers AllPlayers { get; set; }
 
         public CSGOGameState(JObject gameDataJObject)
         {
@@ -41,6 +42,10 @@ namespace CSGOGameObserverSDK.GameDataTypes
 
             if (gameDataJObject["match_stats"] != null)
                 MatchStats = new MatchStats(gameDataJObject["match_stats"]);
+
+            if (gameDataJObject["allplayers"] != null)
+                AllPlayers = new AllPlayers(gameDataJObject["allplayers"]);
+
         }
 
     }
