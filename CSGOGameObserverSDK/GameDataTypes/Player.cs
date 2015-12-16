@@ -25,6 +25,8 @@ namespace CSGOGameObserverSDK.GameDataTypes
         public State State { get; set; }
         public Weapons Weapons { get; set; }
 
+        public MatchStats MatchStats { get; set; }
+
         public Player(JToken playerDataJToken)
         {
             Steamid = playerDataJToken.Value<long?>("steamid");
@@ -37,6 +39,8 @@ namespace CSGOGameObserverSDK.GameDataTypes
                 State = new State(playerDataJToken["state"]);
             if (playerDataJToken["weapons"] != null)
                 Weapons = new Weapons(playerDataJToken["weapons"]);
+            if (playerDataJToken["match_stats"] != null)
+                MatchStats = new MatchStats(playerDataJToken["match_stats"]);
         }
     }
 }
