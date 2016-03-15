@@ -24,7 +24,6 @@ namespace CSGOGameObserverSDK.GameDataTypes
         public string Activity { get; set; }
         public State State { get; set; }
         public Weapons Weapons { get; set; }
-
         public MatchStats MatchStats { get; set; }
 
         public Player(JToken playerDataJToken)
